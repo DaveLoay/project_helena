@@ -1,0 +1,29 @@
+/* Example css/style.css */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    padding: 20px;
+    max-width: 900px;
+    margin: 2em auto; /* Center the content */
+}
+
+h1, h2 {
+    color: #1a1a1a;
+}
+
+.music-piece {
+    background-color: #fff;
+    margin-bottom: 25px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+audio {
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 5px; /* Style the player slightly */
+}

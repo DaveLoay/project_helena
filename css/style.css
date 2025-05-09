@@ -1,29 +1,225 @@
-/* Example css/style.css */
+/* Basic Reset & Dark Theme Setup */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: #1a1a1a; /* Dark background */
+    color: #e0e0e0; /* Light grey text */
     line-height: 1.6;
-    color: #333;
-    background-color: #f4f4f4;
-    padding: 20px;
-    max-width: 900px;
-    margin: 2em auto; /* Center the content */
+    font-weight: 300;
 }
 
-h1, h2 {
-    color: #1a1a1a;
+/* Header Styling */
+header {
+    background-color: #111; /* Slightly darker header */
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 1px solid #333; /* Subtle separator */
+    margin-bottom: 40px;
 }
 
-.music-piece {
-    background-color: #fff;
-    margin-bottom: 25px;
-    padding: 20px;
-    border: 1px solid #ddd;
+header h1 {
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+header .subtitle {
+    color: #aaaaaa; /* Muted subtitle color */
+    font-size: 1.1em;
+}
+
+main {
+    max-width: 1400px; /* This line limits the width */
+    margin: 0 auto;   /* This line centers the limited-width block */
+    padding: 0 20px;  /* This adds padding inside the limited-width block */
+    /* ... other styles ... */
+}
+
+/* Model Section Styling */
+.model-section {
+    margin-bottom: 60px;
+    padding-bottom: 30px;
+    border-bottom: 1px dashed #444;
+
+    /* --- NEW --- */
+    display: flex;      /* Enable Flexbox */
+    flex-wrap: wrap;    /* Allow cards to wrap to the next line */
+    gap: 25px;          /* Define space BETWEEN cards (adjust as needed) */
+    /* justify-content: space-between; */ /* Alternative: pushes cards to edges */
+    /* --- END NEW --- */
+}
+
+.model-section:last-child {
+    border-bottom: none;
+}
+
+.model-section h2 {
+    /* --- NEW --- */
+    width: 100%; /* Make title span full width ABOVE the flex cards */
+    /* --- END NEW --- */
+    color: #f0f0f0;
+    font-weight: 700;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.model-description {
+    /* --- NEW --- */
+    width: 100%; /* Make description span full width ABOVE the flex cards */
+    margin-bottom: 30px; /* Keep space below description before cards */
+    /* --- END NEW --- */
+    color: #b0b0b0;
+    font-size: 1.05em;
+}
+
+/* Generation Card Styling */
+.generation-card {
+    background-color: #2a2a2a;
+    border: 1px solid #383838;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+    /* --- NEW - Width calculation for 2 cards per row (adjust gap value below too) --- */
+    flex: 1 1 calc(50% - 12.5px); /* Grow, Shrink, Basis */
+    /* Explanation:
+       '1' - Allows card to grow if space is available (useful if only one card)
+       '1' - Allows card to shrink if needed
+       'calc(50% - 12.5px)' - Base width. For a 25px gap, each card needs to be
+                              half the container width MINUS half the gap width (25px / 2 = 12.5px)
+                              to fit two side-by-side.
+    */
+    min-width: 300px; /* Prevent cards from becoming excessively narrow */
+    /* --- Remove old margin-bottom if gap handles vertical spacing --- */
+    /* margin-bottom: 30px; */ /* Remove this line */
+    /* --- END NEW --- */
 }
 
-audio {
-    width: 100%;
-    margin-top: 15px;
-    border-radius: 5px; /* Style the player slightly */
+.generation-card h3 {
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 1.4em;
+    margin-bottom: 25px;
 }
+
+/* Input/Output Container (No changes needed here usually) */
+.io-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* Input/Output Container */
+.io-container {
+    display: flex; /* Use flexbox for side-by-side layout (optional) */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 30px; /* Space between input and output groups */
+}
+
+.input-group, .output-group {
+    flex: 1; /* Allow groups to grow */
+    min-width: 300px; /* Minimum width before wrapping */
+}
+
+.input-group h4, .output-group h4 {
+    color: #cccccc;
+    font-weight: 700;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #555;
+    padding-bottom: 5px;
+}
+
+/* Input Item Styling */
+.input-item {
+    margin-bottom: 15px;
+}
+
+.input-item label {
+    display: block; /* Make label take its own line */
+    color: #aaaaaa;
+    font-weight: 700;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    text-transform: uppercase; /* Distinguish labels */
+    letter-spacing: 0.5px;
+}
+
+.input-item p, .input-item pre {
+    color: #d0d0d0;
+    background-color: #333; /* Slightly different background for text inputs */
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.95em;
+}
+
+.input-item pre {
+    white-space: pre-wrap; /* Allow long lines in lyrics to wrap */
+    word-wrap: break-word;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace; /* Monospace for code/lyrics */
+    max-height: 150px; /* Limit height for long lyrics */
+    overflow-y: auto; /* Add scroll if needed */
+}
+
+/* Audio Player Styling */
+audio {
+    width: 100%; /* Make players take full width of their container */
+    margin-top: 5px;
+    border-radius: 5px;
+    /* Basic attempt to style controls (browser support varies wildly) */
+    /* You might need JS libraries for full control, but stick to this for now */
+    filter: invert(0.9) hue-rotate(180deg) contrast(0.9); /* A trick to make default controls dark-themed, adjust values! */
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    color: #888;
+    font-size: 0.9em;
+    border-top: 1px solid #333;
+}
+
+/* --- Optional Enhancements --- */
+
+/* --- Adjust Responsive Adjustments --- */
+@media (max-width: 768px) { /* Breakpoint might need adjustment */
+    .io-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+    .model-section h2 {
+        font-size: 1.6em;
+    }
+    .generation-card h3 {
+        font-size: 1.3em;
+    }
+
+    /* --- NEW --- */
+    /* Stack cards vertically on smaller screens */
+    .generation-card {
+         flex-basis: 100%; /* Make card take full width */
+         /* Alternatively: width: 100%; flex-grow: 0; */
+    }
+    /* --- END NEW --- */
+}
+
+/* Optional: Add a breakpoint for potentially 3 cards if screen is very wide */
+/* @media (min-width: 1200px) {
+    .generation-card {
+       flex-basis: calc(33.333% - 17px); /* Adjust calc based on 25px gap: (25 * 2/3) */
+    /*}
+/*} */

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- TODO: Change Page Title -->
+    <title>Song Title Here (Set X) - Project Helena</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-container">
+        <!-- Sidebar - will be filled by JS from ../partials/navigation.html -->
+        <aside id="navigation-placeholder" class="sidebar"></aside>
+
+        <div class="main-content-wrapper">
+            <header class="page-header">
+                <button id="hamburger-menu" aria-label="Toggle Menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </header>
+
+            <main class="song-content">
+                <section class="conditioning-set">
+                    <!-- TODO: Change Conditioning Set Title -->
+                    <h2>Bad Bunny - DTmF</h2>
+                    
+                    <div class="shared-inputs-heading-wrapper"><h3>Shared Inputs:</h3></div>
+                    <div class="shared-inputs">
+                        <div class="shared-inputs-left-column">
+                            <div class="input-item">
+                                <label>Reference Audio:</label>
+                                <!-- TODO: Update path to reference audio, or use <p>None</p> -->
+                                <audio controls src="../audio/babuny.mp3" preload="metadata">No audio support</audio>
+                                <!-- Example if no reference: <p>None</p> -->
+                            </div>
+                            <div class="input-item">
+                                <label>Genre/Text Description:</label>
+                                <!-- TODO: Update ID to be unique for this song's genre (e.g., id="genre-songX") -->
+                                <p id="genre-babuny">Loading genre...</p>
+                            </div>
+                        </div>
+                        <div class="shared-inputs-right-column">
+                            <div class="input-item">
+                                <label>Lyrics Prompt:</label>
+                                <!-- TODO: Update ID to be unique for this song's lyrics (e.g., id="lyrics-songX") -->
+                                <pre id="lyrics-babuny">Loading lyrics...</pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="model-outputs-heading-wrapper"><h3>Model Outputs:</h3></div>
+                    <div class="model-outputs-container">
+                        <div class="model-output-card">
+                            <h4>YuE Model</h4>
+                            <!-- TODO: Update path to YuE model output audio -->
+                            <audio controls controlsList="nodownload" src="../audio/babuny_yue.mp3" preload="metadata">YuE Output</audio>
+                            <!-- TODO: Add any specific notes for YuE model if desired -->
+                            <p class="model-notes">Optional notes about YuE's generation.</p>
+                        </div>
+                        <div class="model-output-card">
+                            <h4>SongGen Model</h4>
+                            <!-- TODO: Update path to SongGen model output audio -->
+                            <audio controls controlsList="nodownload" src="../audio/babuny_songgen.wav" preload="metadata">SongGen Output</audio>
+                            <!-- TODO: Add any specific notes for SongGen model -->
+                            <p class="model-notes"></p>
+                        </div>
+                        <div class="model-output-card suno-versions-card">
+                            <h4>Suno Model</h4>
+                            <div class="version-selector">
+                                <!-- TODO: Update ID in data-version-target (e.g., "suno-audio-songX") -->
+                                <!-- TODO: Update paths to Suno V4 and V4.5 audio files -->
+                                <button class="version-button active" data-version-target="suno-audio-songX" data-audio-src="../audio/babuny_suno_40.mp3">V4</button>
+                                <button class="version-button" data-version-target="suno-audio-songX" data-audio-src="../audio/babuny_suno_45.mp3">V4.5</button>
+                            </div>
+                            <!-- TODO: Update ID (e.g., id="suno-audio-songX") and initial src path -->
+                            <audio id="suno-audio-songX" controls controlsList="nodownload" src="../audio/SUNO_V4_FILENAME.mp3" preload="metadata">Suno Output</audio>
+                            <!-- TODO: Add any specific notes for Suno model -->
+                            <p class="model-notes"></p>
+                        </div>
+                        <div class="model-output-card">
+                            <h4>Udio Model</h4>
+                            <!-- TODO: Update path to Udio model output audio -->
+                            <audio controls controlsList="nodownload" src="../audio/babuny_udio.mp3" preload="metadata">Udio Output</audio>
+                            <!-- TODO: Add any specific notes for Udio model -->
+                            <p class="model-notes"></p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="page-footer">
+                <p>Project Helena - Generative Music Experiments</p>
+            </footer>
+        </div> <!-- end main-content-wrapper -->
+    </div> <!-- end page-container -->
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

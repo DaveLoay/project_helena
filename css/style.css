@@ -1,225 +1,285 @@
-/* Basic Reset & Dark Theme Setup */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+/* css/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --color-bg-deep: #161A1D;       /* Deepest background */
+    --color-bg-primary: #1D2025;    /* Main content background */
+    --color-bg-sidebar: #242930;    /* Sidebar background */
+    --color-bg-card: #2B3038;       /* Card background (e.g., conditioning set) */
+    --color-bg-card-alt: #343A45;   /* Lighter card (e.g., model output) */
+    --color-bg-input: #3E4450;      /* Input fields, pre tags */
+
+    --color-text-primary: #EAECEF;  /* Primary text (brightest) */
+    --color-text-secondary: #B8C0CC;/* Secondary text (labels, notes) */
+    --color-text-muted: #8A95A5;    /* Muted text (footer) */
+
+    --color-accent: #5D9CEC;        /* A calm, clear blue */
+    --color-accent-hover: #4A89DC;
+    --color-border: #404854;        /* Borders */
+    --color-shadow: rgba(0, 0, 0, 0.2);
+
+    --sidebar-width: 260px;
+    --header-height: 55px;
 }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    background-color: #1a1a1a; /* Dark background */
-    color: #e0e0e0; /* Light grey text */
-    line-height: 1.6;
-    font-weight: 300;
-}
-
-/* Header Styling */
-header {
-    background-color: #111; /* Slightly darker header */
-    padding: 30px 20px;
-    text-align: center;
-    border-bottom: 1px solid #333; /* Subtle separator */
-    margin-bottom: 40px;
-}
-
-header h1 {
-    color: #ffffff;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-header .subtitle {
-    color: #aaaaaa; /* Muted subtitle color */
-    font-size: 1.1em;
-}
-
-main {
-    max-width: 1400px; /* This line limits the width */
-    margin: 0 auto;   /* This line centers the limited-width block */
-    padding: 0 20px;  /* This adds padding inside the limited-width block */
-    /* ... other styles ... */
-}
-
-/* Model Section Styling */
-.model-section {
-    margin-bottom: 60px;
-    padding-bottom: 30px;
-    border-bottom: 1px dashed #444;
-
-    /* --- NEW --- */
-    display: flex;      /* Enable Flexbox */
-    flex-wrap: wrap;    /* Allow cards to wrap to the next line */
-    gap: 25px;          /* Define space BETWEEN cards (adjust as needed) */
-    /* justify-content: space-between; */ /* Alternative: pushes cards to edges */
-    /* --- END NEW --- */
-}
-
-.model-section:last-child {
-    border-bottom: none;
-}
-
-.model-section h2 {
-    /* --- NEW --- */
-    width: 100%; /* Make title span full width ABOVE the flex cards */
-    /* --- END NEW --- */
-    color: #f0f0f0;
-    font-weight: 700;
-    font-size: 1.8em;
-    margin-bottom: 10px;
-    border-bottom: 2px solid #007bff;
-    display: inline-block;
-    padding-bottom: 5px;
-}
-
-.model-description {
-    /* --- NEW --- */
-    width: 100%; /* Make description span full width ABOVE the flex cards */
-    margin-bottom: 30px; /* Keep space below description before cards */
-    /* --- END NEW --- */
-    color: #b0b0b0;
-    font-size: 1.05em;
-}
-
-/* Generation Card Styling */
-.generation-card {
-    background-color: #2a2a2a;
-    border: 1px solid #383838;
-    border-radius: 8px;
-    padding: 20px 25px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
-    /* --- NEW - Width calculation for 2 cards per row (adjust gap value below too) --- */
-    flex: 1 1 calc(50% - 12.5px); /* Grow, Shrink, Basis */
-    /* Explanation:
-       '1' - Allows card to grow if space is available (useful if only one card)
-       '1' - Allows card to shrink if needed
-       'calc(50% - 12.5px)' - Base width. For a 25px gap, each card needs to be
-                              half the container width MINUS half the gap width (25px / 2 = 12.5px)
-                              to fit two side-by-side.
-    */
-    min-width: 300px; /* Prevent cards from becoming excessively narrow */
-    /* --- Remove old margin-bottom if gap handles vertical spacing --- */
-    /* margin-bottom: 30px; */ /* Remove this line */
-    /* --- END NEW --- */
-}
-
-.generation-card h3 {
-    color: #ffffff;
+    font-family: var(--font-body);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-secondary);
+    line-height: 1.65;
     font-weight: 400;
-    font-size: 1.4em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* --- General Typography --- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-text-primary);
+    font-weight: 600;
+    margin-bottom: 0.6em;
+}
+h1 { font-size: 2.2em; letter-spacing: -0.5px; } /* Typically for a global site title, less used here */
+h2 { font-size: 1.75em; letter-spacing: -0.25px; } /* Conditioning Set Titles */
+h3 { font-size: 1.3em; } /* "Shared Inputs", "Model Outputs" */
+h4 { font-size: 1.05em; font-weight: 500;} /* Model Names in cards */
+
+p { margin-bottom: 1em; }
+a { color: var(--color-accent); text-decoration: none; transition: color 0.2s ease; }
+a:hover { color: var(--color-accent-hover); }
+
+/* --- Page Layout --- */
+.page-container { display: flex; min-height: 100vh; }
+
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--color-bg-sidebar);
+    color: var(--color-text-secondary);
+    padding: 20px 0;
+    position: fixed; left: 0; top: 0; bottom: 0;
+    z-index: 1000;
+    transform: translateX(0);
+    transition: transform 0.3s ease-out;
+    overflow-y: auto;
+    border-right: 1px solid var(--color-border);
+}
+.sidebar.closed { transform: translateX(calc(-1 * var(--sidebar-width))); }
+
+#sidebar-nav .nav-logo {
+    display: block;
+    color: var(--color-text-primary);
+    font-family: var(--font-heading);
+    font-size: 1.6em;
+    font-weight: 700;
+    padding: 10px 25px;
     margin-bottom: 25px;
+    text-decoration: none;
 }
-
-/* Input/Output Container (No changes needed here usually) */
-.io-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-}
-
-/* Input/Output Container */
-.io-container {
-    display: flex; /* Use flexbox for side-by-side layout (optional) */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    gap: 30px; /* Space between input and output groups */
-}
-
-.input-group, .output-group {
-    flex: 1; /* Allow groups to grow */
-    min-width: 300px; /* Minimum width before wrapping */
-}
-
-.input-group h4, .output-group h4 {
-    color: #cccccc;
-    font-weight: 700;
-    font-size: 1.1em;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #555;
-    padding-bottom: 5px;
-}
-
-/* Input Item Styling */
-.input-item {
-    margin-bottom: 15px;
-}
-
-.input-item label {
-    display: block; /* Make label take its own line */
-    color: #aaaaaa;
-    font-weight: 700;
-    font-size: 0.9em;
-    margin-bottom: 5px;
-    text-transform: uppercase; /* Distinguish labels */
-    letter-spacing: 0.5px;
-}
-
-.input-item p, .input-item pre {
-    color: #d0d0d0;
-    background-color: #333; /* Slightly different background for text inputs */
-    padding: 8px 12px;
-    border-radius: 4px;
+#sidebar-nav ul { list-style-type: none; }
+#sidebar-nav ul li a {
+    display: block;
+    color: var(--color-text-secondary);
+    padding: 12px 25px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-left-color 0.2s ease;
     font-size: 0.95em;
+    font-weight: 500;
+    border-left: 4px solid transparent;
+}
+#sidebar-nav ul li a:hover {
+    color: var(--color-text-primary);
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left-color: var(--color-accent);
+}
+#sidebar-nav ul li a.active-nav-item {
+    color: var(--color-text-primary);
+    background-color: rgba(93, 156, 236, 0.15); /* Accent with low opacity */
+    border-left-color: var(--color-accent);
+    font-weight: 600;
 }
 
-.input-item pre {
-    white-space: pre-wrap; /* Allow long lines in lyrics to wrap */
-    word-wrap: break-word;
-    font-family: Menlo, Monaco, Consolas, "Courier New", monospace; /* Monospace for code/lyrics */
-    max-height: 150px; /* Limit height for long lyrics */
-    overflow-y: auto; /* Add scroll if needed */
+.main-content-wrapper {
+    flex-grow: 1;
+    margin-left: var(--sidebar-width);
+    transition: margin-left 0.3s ease-out;
+    display: flex; flex-direction: column;
+    min-height: 100vh;
+}
+.sidebar.closed + .main-content-wrapper { margin-left: 0; }
+
+.page-header {
+    background-color: var(--color-bg-primary);
+    padding: 0 20px;
+    height: var(--header-height);
+    display: flex; align-items: center;
+    position: sticky; top: 0;
+    z-index: 900;
+    border-bottom: 1px solid var(--color-border);
 }
 
-/* Audio Player Styling */
-audio {
-    width: 100%; /* Make players take full width of their container */
-    margin-top: 5px;
-    border-radius: 5px;
-    /* Basic attempt to style controls (browser support varies wildly) */
-    /* You might need JS libraries for full control, but stick to this for now */
-    filter: invert(0.9) hue-rotate(180deg) contrast(0.9); /* A trick to make default controls dark-themed, adjust values! */
+#hamburger-menu {
+    display: none;
+    background: transparent; border: none; cursor: pointer;
+    padding: 10px; margin-right: 10px; /* Space from edge/title */
+    z-index: 1001;
+    width: 44px; height: 44px;
+    display: flex; flex-direction: column;
+    justify-content: space-around; align-items: center;
+}
+.hamburger-line {
+    display: block; width: 22px; height: 2px; /* Thinner lines */
+    background-color: var(--color-text-secondary);
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+#hamburger-menu:hover .hamburger-line { background-color: var(--color-text-primary); }
+#hamburger-menu.open .hamburger-line:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+#hamburger-menu.open .hamburger-line:nth-child(2) { opacity: 0; }
+#hamburger-menu.open .hamburger-line:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.song-content { padding: 30px 40px; flex-grow: 1; }
+
+/* --- Card and Content Styling --- */
+.conditioning-set {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 12px var(--color-shadow);
+}
+.conditioning-set h2 {
+    color: var(--color-text-primary);
+    border-bottom-color: var(--color-accent);
+    margin-top: 0;
 }
 
-/* Footer Styling */
-footer {
-    text-align: center;
-    margin-top: 50px;
-    padding: 20px;
-    color: #888;
+.shared-inputs-heading-wrapper, .model-outputs-heading-wrapper {
+    width: 100%; margin-bottom: 20px;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 10px;
+}
+.shared-inputs-heading-wrapper h3, .model-outputs-heading-wrapper h3 {
+    color: var(--color-text-primary);
+    font-weight: 500;
+}
+
+.shared-inputs {
+    margin-bottom: 30px; padding-bottom: 0; /* Removed bottom border here, heading wrapper has it */
+    border-bottom: none;
+    display: flex; flex-wrap: wrap; gap: 30px;
+}
+.shared-inputs-left-column { flex: 1 1 38%; min-width: 280px; } /* Adjusted flex basis */
+.shared-inputs-right-column { flex: 1 1 58%; min-width: 300px; }
+
+.input-item { margin-bottom: 20px; }
+.input-item label {
+    display: block; color: var(--color-text-secondary);
+    font-weight: 500; font-size: 0.8em;
+    margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.8px;
+}
+.input-item p, .input-item pre {
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-input);
+    padding: 12px 15px;
+    border-radius: 6px;
     font-size: 0.9em;
-    border-top: 1px solid #333;
+    min-height: 44px;
+    border: 1px solid var(--color-border);
+}
+.input-item pre {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    max-height: 280px; overflow-y: auto;
+}
+.input-item pre .lyric-section { color: var(--color-text-primary); margin-top: 0.9em; margin-bottom: 0.4em; }
+.input-item pre .lyric-section:first-of-type { margin-top: 0; }
+.input-item pre em { color: var(--color-text-secondary); }
+
+.model-outputs-container { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 10px; }
+.model-output-card {
+    background-color: var(--color-bg-card-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 6px; padding: 18px;
+    box-shadow: 0 2px 6px var(--color-shadow);
+    display: flex; flex-direction: column;
+    flex-grow: 1; flex-shrink: 1;
+    flex-basis: calc(25% - 15px); min-width: 210px; /* Adjusted min-width */
+}
+.model-output-card h4 {
+    color: var(--color-text-primary);
+    font-weight: 600; font-size: 1em;
+    margin-bottom: 12px; text-align: center;
+}
+.model-output-card audio {
+    width: 100%; margin-bottom: 12px;
+    filter: invert(1) hue-rotate(180deg) contrast(0.8) saturate(0.5) brightness(1.1); /* More refined dark theme for player */
+}
+.model-output-card .model-notes {
+    font-size: 0.85em; color: var(--color-text-secondary);
+    margin-top: auto; flex-grow: 1; padding-top: 8px;
+    text-align: center;
 }
 
-/* --- Optional Enhancements --- */
+.suno-versions-card .version-selector { display: flex; justify-content: center; gap: 8px; margin-bottom: 12px; }
+.suno-versions-card .version-button {
+    background-color: var(--color-bg-input);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+    padding: 6px 12px; border-radius: 4px; cursor: pointer;
+    font-size: 0.85em; font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.suno-versions-card .version-button:hover {
+    background-color: lighten(var(--color-bg-input), 5%); /* Needs SASS or manual color */
+    border-color: var(--color-accent);
+    color: var(--color-text-primary);
+}
+/* Manual hover color if not using SASS: */
+/* .suno-versions-card .version-button:hover { background-color: #4a505c; ... } */
 
-/* --- Adjust Responsive Adjustments --- */
-@media (max-width: 768px) { /* Breakpoint might need adjustment */
-    .io-container {
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    header h1 {
-        font-size: 1.8em;
-    }
-    .model-section h2 {
-        font-size: 1.6em;
-    }
-    .generation-card h3 {
-        font-size: 1.3em;
-    }
-
-    /* --- NEW --- */
-    /* Stack cards vertically on smaller screens */
-    .generation-card {
-         flex-basis: 100%; /* Make card take full width */
-         /* Alternatively: width: 100%; flex-grow: 0; */
-    }
-    /* --- END NEW --- */
+.suno-versions-card .version-button.active {
+    background-color: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
 }
 
-/* Optional: Add a breakpoint for potentially 3 cards if screen is very wide */
-/* @media (min-width: 1200px) {
-    .generation-card {
-       flex-basis: calc(33.333% - 17px); /* Adjust calc based on 25px gap: (25 * 2/3) */
-    /*}
-/*} */
+.page-footer {
+    text-align: center; padding: 25px;
+    color: var(--color-text-muted); font-size: 0.9em;
+    border-top: 1px solid var(--color-border);
+    background-color: var(--color-bg-deep);
+    margin-top: auto;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .sidebar { transform: translateX(calc(-1 * var(--sidebar-width))); }
+    .sidebar.open { transform: translateX(0); }
+    .main-content-wrapper { margin-left: 0; }
+    #hamburger-menu { display: flex; }
+    .model-output-card { flex-basis: calc(50% - 10px); }
+    .song-content { padding: 20px 25px; }
+}
+
+@media (max-width: 768px) {
+    .shared-inputs { flex-direction: column; gap: 20px; }
+    .shared-inputs-left-column, .shared-inputs-right-column { flex-basis: 100%; }
+    .conditioning-set h2 { font-size: 1.5em; }
+    .shared-inputs-heading-wrapper h3, .model-outputs-heading-wrapper h3 { font-size: 1.2em; }
+    .song-content { padding: 20px; }
+}
+
+@media (max-width: 600px) {
+    .model-output-card { flex-basis: 100%; }
+    :root { --sidebar-width: 250px; } /* Slightly narrower sidebar */
+    #sidebar-nav .nav-logo { font-size: 1.3em; padding: 12px 20px; margin-bottom: 20px; }
+    #sidebar-nav ul li a { padding: 10px 20px; font-size: 0.9em; }
+    .song-content { padding: 15px; }
+    h2 {font-size: 1.4em;}
+}
